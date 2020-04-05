@@ -1,2 +1,2 @@
-# Rock-Paper-Scissors
+# RPS-Multiplayer
 Online multiplayer game using Firebase
