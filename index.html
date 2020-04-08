@@ -1,18 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RPS Multiplayer</title>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
+
 <body>
-    <h1>Rock Paper Scissor</h1>
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1 class="font-weight-bold">Rock Paper Scissor</h1>
+            <h2>Log in to play!</h2>
+        </div>
+
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h2>Game Results</h2>
+                <div>Number of games played: </div>
+                <div>Player 1 wins:</div>
+                <div>Player 2 wins:</div>
+            </div>
+        </div>
+        <!-- Game area -->
+        <div class="row text-center">
+            <div class="col-md-4">
+                <form>
+                    <div class="form-group">
+                        <h5>Player 1 Name:</h5>
+                        <input class="form-control" id="player1" placeholder="Enter Name">
+                        <button class="btn btn-primary btn-sm submitName" type="submit" id="submit1">Submit</button>
+                    </div>
+                </form>
+                <h5>Choose your weapon!</h5>
+                <button type="button" class="btn btn-primary btn-sm">Rock</button>
+                <button type="button" class="btn btn-primary btn-sm">Paper</button>
+                <button type="button" class="btn btn-primary btn-sm">Scissor</button>
+
+            </div>
+
+            <div class="col-md-4">
+                <h5>Play status here</h5>
+            </div>
+
+            <div class="col-md-4">
+                <form>
+                    <div class="form-group">
+                        <h5>Player 2 Name:</h5>
+                        <input class="form-control" id="player2" placeholder="Enter Name">
+                    </div>
+                    <button class="btn btn-primary btn-sm submitName" type="submit" id="submit2">Submit</button>
+                </form>
+                <h5>Choose your weapon!</h5>
+                <button type="button" class="btn btn-primary btn-sm">Rock</button>
+                <button type="button" class="btn btn-primary btn-sm">Paper</button>
+                <button type="button" class="btn btn-primary btn-sm">Scissor</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-">
+                <form class="form-group chatbox">
+                    <h4>Chat</h4>
+                    <!-- <label for="msg"><b>Message</b></label> -->
+                    <textarea placeholder="Type message.." name="msg" required id="chatLog"></textarea>
+                    <button type="submit" class="btn" id="submit">Send</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascript/app.js"></script>
+    
+
 </body>
+
 </html>
