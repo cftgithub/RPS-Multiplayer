@@ -34,7 +34,7 @@
             <div class="col-md-4">
                 <form>
                     <div class="form-group">
-                        <h5>Player 1 Name:</h5>
+                        <h5>Player 1:</h5>
                         <input class="form-control" id="player1" placeholder="Enter Name">
                         <button class="btn btn-primary btn-sm submitName" type="submit" id="submit1">Submit</button>
                     </div>
@@ -53,7 +53,7 @@
             <div class="col-md-4">
                 <form>
                     <div class="form-group">
-                        <h5>Player 2 Name:</h5>
+                        <h5>Player 2:</h5>
                         <input class="form-control" id="player2" placeholder="Enter Name">
                     </div>
                     <button class="btn btn-primary btn-sm submitName" type="submit" id="submit2">Submit</button>
@@ -65,14 +65,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-">
+            <div class="col-md-6">
                 <form class="form-group chatbox">
-                    <h4>Chat</h4>
+                    <h5>Chat</h5>
                     <!-- <label for="msg"><b>Message</b></label> -->
-                    <textarea placeholder="Type message.." name="msg" required id="chatLog"></textarea>
-                    <button type="submit" class="btn" id="submit">Send</button>
-                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                    <textarea class="form-control" placeholder="Type message.." name="msg" required id="chatLog"></textarea>
+                    <button type="submit" class="btn btn-outline-primary" id="submitChat">Send</button>
                 </form>
+            </div>
+            <div class="col-md-6">
+                <h5>Chat Log</h5>
+                <p id="conversation"></p>
             </div>
         </div>
     </div>
