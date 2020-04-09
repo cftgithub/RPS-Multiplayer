@@ -13,56 +13,63 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 var database = firebase.database();
-var chatLog = "";
 
 // Get a snapshot of stored data on initial load and update page in real-time
-database.ref().on("child_added", function(snapshot){
-      // player1 = snapshot.val().name1;
-    // player2 = snapshot.val().name2;
-    chatLog = snapshot.val().chat;
-    // $("#player1").html(player1);
-    // $("#player2").html(player2);
-    $("#conversation").append(snapshot.val().chat);
-    $("#conversation").append("<br>");
-      
+database.ref().on("child_added", function (snapshot) {
+  player1 = snapshot.val().name1;
+  player2 = snapshot.val().name2;
+  chatLog = snapshot.val().chat;
+  $("#player1").html(player1);
+  $("#player2").html(player2);
+  $("#conversation").append(snapshot.val().chat);
+  $("#conversation").append("<br>");  
 });
 
-$("#submitChat").on("click", function(){
+var input = document.getElementById("chatLog");
+input.addEventListener("keyup", function(event){
+  if(event.keyCode === 13){
+    event.preventDefault();
+    document.getElementById("submitChat").click();
+  }
+  //   chatLog = $("#chatLog").val().trim();
+  // console.log(chatLog);
+  // database.ref().push({
+  //   chat: chatLog
+  // });
+  // $("#chatLog").val("");
+  // }
+});
+
+$("#submitChat").on("click", function () {
   event.preventDefault();
   chatLog = $("#chatLog").val().trim();
   console.log(chatLog);
   database.ref().push({
-    chat:chatLog
+    chat: chatLog
   });
+  $("#chatLog").val("");
 });
 
-// $(document).ready (function(){
-//   $("#submitChat").click(function(){
-//     $("#chatLog").empty();  
-// });
-// });
-
-$(".submitName").on("click", function(event) {
+$(".submitName").on("click", function (event) {
   event.preventDefault();
   var player1 = $("#player1").val();
   var player2 = $("#player2").val();
   console.log("player 1: " + player1, "player 2: " + player2);
-  
+
   database.ref().set({
-    name1:player1,
-    name2:player2
+    name1: player1,
+    name2: player2
   });
-  // $("#.submitName").hide();
+  $("#player1, #player2").val("");
 });
 // $("#submit2").on("click", function(event) {
 //   event.preventDefault();
 //   var player2 = $("#player2").val();
 //   console.log("player 2: " + player2);
 //     });
-  
 
 
-  
+
+
   //   chat:chatLog,
   //   dateAdded:firebase.database.ServerValue.TIMESTAMP
-  
