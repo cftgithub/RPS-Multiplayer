@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
-<body>
+<body onunload = "clearData()">
     <div class="container">
         <div class="jumbotron text-center">
             <h1 class="font-weight-bold">Rock Paper Scissor</h1>
@@ -34,42 +34,36 @@
         <div class="row text-center">
             <div class="col-md-4">
                 <form>
-                    <div class="form-group">
-                        <h5>Player 1:</h5>
+                    <h5>Player 1:</h5>
+                    <div id="p1" class="form-group">
                         <input id="player1" class="form-control" placeholder="Enter Name">
                         <button id="submit1"class="btn btn-primary btn-sm submitName" type="submit">Submit</button>
                     </div>
                 </form>
-                <h5>Choose your weapon!</h5>
-                <button type="button" class="btn btn-primary btn-sm">Rock</button>
-                <button type="button" class="btn btn-primary btn-sm">Paper</button>
-                <button type="button" class="btn btn-primary btn-sm">Scissor</button>
-
+                <div id="weapons1"></div>                
             </div>
 
             <div class="col-md-4">
-                <h5>Play status here</h5>
+                <!-- Display player choices here -->
+                <div id="vs1"></div>
+                <div id="vs2"></div>
             </div>
 
             <div class="col-md-4">
                 <form>
-                    <div class="form-group">
-                        <h5>Player 2:</h5>
+                    <h5>Player 2:</h5>
+                    <div id="p2" class="form-group">
                         <input id="player2" class="form-control" placeholder="Enter Name">
+                        <button id="submit2" class="btn btn-primary btn-sm submitName" type="submit">Submit</button>
                     </div>
-                    <button id="submit2" class="btn btn-primary btn-sm submitName" type="submit">Submit</button>
                 </form>
-                <h5>Choose your weapon!</h5>
-                <button type="button" class="btn btn-primary btn-sm">Rock</button>
-                <button type="button" class="btn btn-primary btn-sm">Paper</button>
-                <button type="button" class="btn btn-primary btn-sm">Scissor</button>
+                <div id="weapons2"></div>                
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <form class="form-group chatbox">
                     <h5>Chat</h5>
-                    <!-- <label for="msg"><b>Message</b></label> -->
                     <textarea id="chatLog" class="form-control" placeholder="Type message.." name="msg" required></textarea>
                     <button id="submitChat" type="submit" class="btn btn-outline-primary">Send</button>
                 </form>
