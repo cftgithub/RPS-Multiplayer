@@ -1,6 +1,11 @@
+body{
+    background-image: url(../images/swirl.png);
+    background-color: rgb(107, 154, 216);
+}
 .jumbotron{
     background-size: cover;
     background: rgb(11, 11, 109, .5);
+    color: cornsilk;
 }
 .chatbox, .row{
     border: 3px solid #f1f1f1;
@@ -8,7 +13,17 @@
 .row{
     margin: 50px 200px;
 }
-body{
-    background-image: url(../images/clean-gray-paper.png);
-    background-color: rgb(158, 195, 243);
+#p1, #p2 {
+    font-weight: bolder;
+    font-size: x-large;
+}
+#weapons1, #weapons2 {
+    font-weight: bold;
+}
+#p1Score, #p2Score {
+    padding-left: 10px;
+}
+#results {
+    font-weight: bolder;
+    font-size: x-large;
 }
