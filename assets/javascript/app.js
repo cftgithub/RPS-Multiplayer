@@ -26,15 +26,15 @@ database.ref().on("child_added", function (snapshot) {
   // used to determine who wins
   $("#vs1").html(snapshot.val().weapon1).hide();
   $("#vs2").html(snapshot.val().weapon2).hide();
+  $("#restart1").html(snapshot.val().resetP1);
+  $("#restart2").html(snapshot.val().resetP2);
   $("#results").html(snapshot.val().gameResults);
-  $("#weapons1").html(snapshot.val().resetP1);
-  $("#weapons2").html(snapshot.val().resetP2);
 })
 
 // determin wins
-// var p1Weapon = document.getElementById(vs1).val();
-// var p1Weapon = $("#vs1").text();
-// console.log(p1Weapon);
+var p1Wins = 0;
+var p2Wins = 0;
+
 function results() {
   var vs1 = document.getElementById("vs1").innerHTML;
   var vs2 = document.getElementById("vs2").innerHTML;
@@ -49,26 +49,32 @@ function results() {
   }
   else if (vs1 === "Rock" && vs2 === "Paper") {
     document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p2 + " Wins!");
+    document.getElementById("p2Score").innerHTML = (p2Wins +1);
     restartGame();
   }
   else if (vs1 === "Rock" && vs2 === "Scissors") {
     document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p1 + " Wins!");
+    document.getElementById("p2Score").innerHTML = (p1Wins +1);
     restartGame();
   }
   else if (vs1 === "Paper" && vs2 === "Rock") {
     document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p1 + " Wins!");
+    document.getElementById("p2Score").innerHTML = (p1Wins +1);
     restartGame();
   }
   else if (vs1 === "Paper" && vs2 === "Scissors") {
     document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p2 + " Wins!");
+    document.getElementById("p2Score").innerHTML = (p2Wins +1);
     restartGame();
   }
   else if (vs1 === "Scissors" && vs2 === "Paper") {
     document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p1 + " Wins!");
+    document.getElementById("p2Score").innerHTML = (p1Wins +1);
     restartGame();
   }
   else if (vs1 === "Scissors" && vs2 === "Rock") {
     document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p2 + " Wins!");
+    document.getElementById("p2Score").innerHTML = (p2Wins +1);
     restartGame();
   }
   event.preventDefault();
@@ -83,26 +89,27 @@ function results() {
 }
 
 function restartGame() {
-  document.getElementById("weapons1").innerHTML = ("<button id='start1'>Rematch!</button>");
-  document.getElementById("weapons2").innerHTML = ("<button id='start2'>Rematch!</button>");
+
+  document.getElementById("restart1").innerHTML = ("<button id='start1'>Rematch!</button>");
+  document.getElementById("restart2").innerHTML = ("<button id='start2'>Rematch!</button>");
   event.preventDefault();
-  var resetP1 = document.getElementById("weapons1").innerHTML;
-  var resetP2 = document.getElementById("weapons2").innerHTML;
+  var resetP1 = document.getElementById("restart1").innerHTML;
+  var resetP2 = document.getElementById("restart2").innerHTML;
   database.ref().push({
     resetP1: resetP1,
     resetP2: resetP2
   })
 }
 
-$("#start1").on("click", function () {
-  $("#weapons1").append("<h5>Choose your weapon!</h5>" + "<br>" + "<button id='rock1'>Rock</button> " + "<button id='paper1'>Paper</button> "
-    + "<button id='scissor1'>Scissors</button>");
+$(document).on("click", "#start1", function () {
   $("#start2").prop("disabled", true);
+  $("#weapons1").html("<h5>Choose your weapon!</h5>" + "<br>" + "<button id='rock1'>Rock</button> " + "<button id='paper1'>Paper</button> "
+    + "<button id='scissor1'>Scissors</button>");
 });
-$("#start2").on("click", function () {
-  $("#weapons2").append("<h5>Choose your weapon!</h5>" + "<br>" + "<button id='rock2'>Rock</button> " + "<button id='paper2'>Paper</button> "
-    + "<button id='scissor2'>Scissors</button>");
+$(document).on("click", "#start2", function () {
   $("#start1").prop("disabled", true);
+  $("#weapons2").html("<h5>Choose your weapon!</h5>" + "<br>" + "<button id='rock2'>Rock</button> " + "<button id='paper2'>Paper</button> "
+    + "<button id='scissor2'>Scissors</button>");
 });
 
 // chat box

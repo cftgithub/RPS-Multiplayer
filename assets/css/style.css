@@ -8,3 +8,7 @@
 .row{
     margin: 50px 200px;
 }
+body{
+    background-image: url(../images/clean-gray-paper.png);
+    background-color: rgb(158, 195, 243);
+}
