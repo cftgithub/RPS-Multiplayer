@@ -23,15 +23,87 @@ database.ref().on("child_added", function (snapshot) {
   $("#conversation").append("<br>");
   $("#p1").html(snapshot.val().name1);
   $("#p2").html(snapshot.val().name2);
-  $("#vs1").html(snapshot.val().weapon1);
+  // used to determine who wins
+  $("#vs1").html(snapshot.val().weapon1).hide();
   $("#vs2").html(snapshot.val().weapon2).hide();
+  $("#results").html(snapshot.val().gameResults);
+  $("#weapons1").html(snapshot.val().resetP1);
+  $("#weapons2").html(snapshot.val().resetP2);
 })
 
 // determin wins
 // var p1Weapon = document.getElementById(vs1).val();
-var p1Weapon = $("#vs1").text();
-console.log(p1Weapon);
+// var p1Weapon = $("#vs1").text();
+// console.log(p1Weapon);
+function results() {
+  var vs1 = document.getElementById("vs1").innerHTML;
+  var vs2 = document.getElementById("vs2").innerHTML;
+  var p1 = document.getElementById("p1").innerHTML;
+  var p2 = document.getElementById("p2").innerHTML;
+  console.log(vs1, vs2);
 
+  if (vs1 === vs2) {
+    console.log("tie");
+    document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + "It's a Tie!");
+    restartGame();
+  }
+  else if (vs1 === "Rock" && vs2 === "Paper") {
+    document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p2 + " Wins!");
+    restartGame();
+  }
+  else if (vs1 === "Rock" && vs2 === "Scissors") {
+    document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p1 + " Wins!");
+    restartGame();
+  }
+  else if (vs1 === "Paper" && vs2 === "Rock") {
+    document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p1 + " Wins!");
+    restartGame();
+  }
+  else if (vs1 === "Paper" && vs2 === "Scissors") {
+    document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p2 + " Wins!");
+    restartGame();
+  }
+  else if (vs1 === "Scissors" && vs2 === "Paper") {
+    document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p1 + " Wins!");
+    restartGame();
+  }
+  else if (vs1 === "Scissors" && vs2 === "Rock") {
+    document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p2 + " Wins!");
+    restartGame();
+  }
+  event.preventDefault();
+  var gameResults = document.getElementById("results").innerHTML;
+  database.ref().push({
+    gameResults: gameResults
+  })
+
+  // if (vs1 !== "" && vs2 !== "") { //if both players have data
+  //   //clear variables
+  // }
+}
+
+function restartGame() {
+  document.getElementById("weapons1").innerHTML = ("<button id='start1'>Rematch!</button>");
+  document.getElementById("weapons2").innerHTML = ("<button id='start2'>Rematch!</button>");
+  event.preventDefault();
+  var resetP1 = document.getElementById("weapons1").innerHTML;
+  var resetP2 = document.getElementById("weapons2").innerHTML;
+  database.ref().push({
+    resetP1: resetP1,
+    resetP2: resetP2
+  })
+}
+
+$("#start1").on("click", function () {
+  $("#weapons1").append("<h5>Choose your weapon!</h5>" + "<br>" + "<button id='rock1'>Rock</button> " + "<button id='paper1'>Paper</button> "
+    + "<button id='scissor1'>Scissors</button>");
+  $("#start2").prop("disabled", true);
+});
+$("#start2").on("click", function () {
+  $("#weapons2").append("<h5>Choose your weapon!</h5>" + "<br>" + "<button id='rock2'>Rock</button> " + "<button id='paper2'>Paper</button> "
+    + "<button id='scissor2'>Scissors</button>");
+  $("#start1").prop("disabled", true);
+});
 
 // chat box
 var input = document.getElementById("chatLog");
@@ -61,7 +133,7 @@ $("#submit1").on("click", function () {
   console.log("player 1: " + player1)
   $("#submit2").prop("disabled", true);
   $("#weapons1").append("<h5>Choose your weapon!</h5>" + "<br>" + "<button id='rock1'>Rock</button> " + "<button id='paper1'>Paper</button> "
-    + "<button id='scissor1'>Scissor</button>");
+    + "<button id='scissor1'>Scissors</button>");
 })
 // submit player2 name, append game buttons
 $("#submit2").on("click", function () {
@@ -73,7 +145,7 @@ $("#submit2").on("click", function () {
   console.log("player 2: " + player2)
   $("#submit1").prop("disabled", true);
   $("#weapons2").append("<h5>Choose your weapon!</h5>" + "<br>" + "<button id='rock2'>Rock</button> " + "<button id='paper2'>Paper</button> "
-    + "<button id='scissor2'>Scissor</button>");
+    + "<button id='scissor2'>Scissors</button>");
 })
 
 // clear data stored in Firebase when browser is closed
@@ -83,55 +155,60 @@ function clearData(onunload) {
 
 // Player1 weapons control
 $(document).on("click", "#rock1", function () {
-  $("#weapons1").html("rock1");
+  $("#weapons1").html("Your weapon is: Rock");
   $("#paper1", "#scissor1").hide();
-  var weapon1 = "rock1";
+  var weapon1 = "Rock";
   database.ref().push({
     weapon1: weapon1
   })
+  results();
 });
 $(document).on("click", "#paper1", function () {
-  $("#weapons1").html("paper1");
+  $("#weapons1").html("Your weapon is: Paper");
   $("#rock1", "#scissor1").hide();
-  var weapon1 = "paper1";
+  var weapon1 = "Paper";
   database.ref().push({
     weapon1: weapon1
   })
+  results();
 });
 $(document).on("click", "#scissor1", function () {
-  $("#weapons1").html("scissor1");
+  $("#weapons1").html("Your weapon is: Scissors");
   $("#paper1", "#rock1").hide();
-  var weapon1 = "scissor1";
+  var weapon1 = "Scissors";
   database.ref().push({
     weapon1: weapon1
   })
+  results();
 });
 
 // Player2 weapons control
 $(document).on("click", "#rock2", function () {
-  $("#weapons2").html("rock2");
+  $("#weapons2").html("Your weapon is: Rock");
   $("#paper2", "#scissor2").hide();
-  var weapon2 = "rock2";
+  var weapon2 = "Rock";
   database.ref().push({
     weapon2: weapon2
   })
+  results();
 });
 $(document).on("click", "#paper2", function () {
-  $("#weapons2").html("paper2");
+  $("#weapons2").html("Your weapon is: Paper");
   $("#rock2", "#scissor2").hide();
-  var weapon2 = "paper2";
+  var weapon2 = "Paper";
   database.ref().push({
     weapon2: weapon2
   })
+  results();
 });
 $(document).on("click", "#scissor2", function () {
-  $("#weapons2").html("scissor2");
+  $("#weapons2").html("Your weapon is: Scissors");
   $("#paper2", "#rock2").hide();
-  var weapon2 = "scissor2";
+  var weapon2 = "Scissors";
   database.ref().push({
     weapon2: weapon2
   })
+  results();
 });
   // change above to if statement?
 
-  
