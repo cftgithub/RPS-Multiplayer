@@ -54,12 +54,12 @@ function results() {
   }
   else if (vs1 === "Rock" && vs2 === "Scissors") {
     document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p1 + " Wins!");
-    document.getElementById("p2Score").innerHTML = (p1Wins +1);
+    document.getElementById("p1Score").innerHTML = (p1Wins +1);
     restartGame();
   }
   else if (vs1 === "Paper" && vs2 === "Rock") {
     document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p1 + " Wins!");
-    document.getElementById("p2Score").innerHTML = (p1Wins +1);
+    document.getElementById("p1Score").innerHTML = (p1Wins +1);
     restartGame();
   }
   else if (vs1 === "Paper" && vs2 === "Scissors") {
@@ -69,7 +69,7 @@ function results() {
   }
   else if (vs1 === "Scissors" && vs2 === "Paper") {
     document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p1 + " Wins!");
-    document.getElementById("p2Score").innerHTML = (p1Wins +1);
+    document.getElementById("p1Score").innerHTML = (p1Wins +1);
     restartGame();
   }
   else if (vs1 === "Scissors" && vs2 === "Rock") {
@@ -104,8 +104,11 @@ function restartGame() {
 $(document).on("click", "#start1", function () {
   $("#start2").prop("disabled", true);
   $("#weapons1").html("<h5>Choose your weapon!</h5>" + "<br>" + "<button id='rock1'>Rock</button> " + "<button id='paper1'>Paper</button> "
-    + "<button id='scissor1'>Scissors</button>");
+  + "<button id='scissor1'>Scissors</button>");
+  $("#weapons1").html("<h5>Choose your weapon!</h5>");
+  $("#choices1").show();
 });
+
 $(document).on("click", "#start2", function () {
   $("#start1").prop("disabled", true);
   $("#weapons2").html("<h5>Choose your weapon!</h5>" + "<br>" + "<button id='rock2'>Rock</button> " + "<button id='paper2'>Paper</button> "
@@ -130,6 +133,7 @@ $("#submitChat").on("click", function () {
   // clears textbox after submit
   $("#chatLog").val("");
 })
+
 // submit player1 name, append game buttons
 $("#submit1").on("click", function () {
   event.preventDefault();
@@ -141,6 +145,8 @@ $("#submit1").on("click", function () {
   $("#submit2").prop("disabled", true);
   $("#weapons1").append("<h5>Choose your weapon!</h5>" + "<br>" + "<button id='rock1'>Rock</button> " + "<button id='paper1'>Paper</button> "
     + "<button id='scissor1'>Scissors</button>");
+  $("#weapons1").append("<h5>Choose your weapon!</h5>");
+  $("#choices1").show();
 })
 // submit player2 name, append game buttons
 $("#submit2").on("click", function () {
