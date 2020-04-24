@@ -9,14 +9,12 @@
     <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <script src="https://kit.fontawesome.com/67e520da17.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
 </head>
 
-<body onunload="clearData()">
+<body onunload = "clearData()">
     <div class="container">
         <div class="jumbotron text-center">
             <h1 class="font-weight-bold">Rock Paper Scissor</h1>
@@ -24,69 +22,64 @@
         </div>
     </div>
 
-    <div class="row text-center">
-        <div class="col-md-12">
-            <h2>Game Results</h2>
-            <!-- <div>Number of games played: </div> -->
-            <h5 class="d-flex justify-content-center">Player 1 Wins: <div id="p1Score"> 0</div>
-            </h5>
-            <h5 class="d-flex justify-content-center">Player 2 Wins: <div id="p2Score"> 0</div>
-            </h5>
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h2>Game Results</h2>
+                <!-- <div>Number of games played: </div> -->
+                <h5 class="d-flex justify-content-center">Player 1 Wins: <div id="p1Score"> 0</div></h5>
+                <h5 class="d-flex justify-content-center">Player 2 Wins: <div id="p2Score"> 0</div></h5>
+            </div>
         </div>
-    </div>
-    <!-- Game area -->
-    <div class="row text-center">
-        <div class="col-md-4">
-            <form>
-                <h5>Player 1:</h5>
-                <div id="p1" class="form-group">
-                    <input id="player1" class="form-control" placeholder="Enter Name">
-                    <button id="submit1" class="btn btn-primary btn-sm submitName" type="submit">Submit</button>
-                </div>
-            </form>
-            <div id="restart1"></div>
-            <div id="weapons1"></div>            
-            <!-- <span id="choices1">
-                <i id="rock1" class="far fa-hand-rock fa-3x"></i>
-                <i id="paper1" class="far fa-hand-paper fa-3x"></i>
-                <i id="scissor1" class="far fa-hand-scissors fa-3x"></i>
-            </span> -->
+        <!-- Game area -->
+        <div class="row text-center">
+            <div class="col-md-4">
+                <form>
+                    <h5>Player 1:</h5>
+                    <div id="p1" class="form-group">
+                        <input id="player1" class="form-control" placeholder="Enter Name">
+                        <button id="submit1"class="btn btn-primary btn-sm submitName" type="submit">Submit</button>
+                    </div>
+                </form>
+                <div id="restart1"></div>
+                <div id="weapons1"></div>                
+            </div>
+            
+            <div id="results" class="col-md-4">
+                <!-- Display player choices here -->
+                <div id="vs1"></div>
+                <div id="vs2"></div>
+            </div>
+            
+            <div class="col-md-4">
+                <form>
+                    <h5>Player 2:</h5>
+                    <div id="p2" class="form-group">
+                        <input id="player2" class="form-control" placeholder="Enter Name">
+                        <button id="submit2" class="btn btn-primary btn-sm submitName" type="submit">Submit</button>
+                    </div>
+                </form>
+                <div id="restart2"></div>
+                <div id="weapons2"></div>                
+            </div>
         </div>
-
-        <div id="results" class="col-md-4">
-            <!-- Display player choices here -->
-            <div id="vs1"></div>
-            <div id="vs2"></div>
+        <div class="row">
+            <div class="col-md-6">
+                <form class="form-group chatbox">
+                    <h5>Chat</h5>
+                    <textarea id="chatLog" class="form-control" placeholder="Type message.." name="msg" required></textarea>
+                    <button id="submitChat" type="submit" class="btn btn-outline-primary">Send</button>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h5>Chat Log</h5>
+                <p id="conversation"></p>
+            </div>
         </div>
-
-        <div class="col-md-4">
-            <form>
-                <h5>Player 2:</h5>
-                <div id="p2" class="form-group">
-                    <input id="player2" class="form-control" placeholder="Enter Name">
-                    <button id="submit2" class="btn btn-primary btn-sm submitName" type="submit">Submit</button>
-                </div>
-            </form>
-            <div id="restart2"></div>
-            <div id="weapons2"></div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <form class="form-group chatbox">
-                <i class="far fa-comment-dots fa-3x"></i>
-                <textarea id="chatLog" class="form-control" placeholder="Type message.." name="msg" required></textarea>
-                <button id="submitChat" type="submit" class="btn btn-outline-primary">Send</button>
-            </form>
-        </div>
-        <div class="col-md-6">
-            <i class="far fa-comments fa-3x"></i>
-            <p id="conversation"></p>
-        </div>
-    </div>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascript/app.js"></script>
+    
+
 </body>
 
 </html>
