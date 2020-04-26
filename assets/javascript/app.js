@@ -54,12 +54,12 @@ function results() {
   }
   else if (vs1 === "Rock" && vs2 === "Scissors") {
     document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p1 + " Wins!");
-    document.getElementById("p2Score").innerHTML = (p1Wins +1);
+    document.getElementById("p1Score").innerHTML = (p1Wins +1);
     restartGame();
   }
   else if (vs1 === "Paper" && vs2 === "Rock") {
     document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p1 + " Wins!");
-    document.getElementById("p2Score").innerHTML = (p1Wins +1);
+    document.getElementById("p1Score").innerHTML = (p1Wins +1);
     restartGame();
   }
   else if (vs1 === "Paper" && vs2 === "Scissors") {
@@ -69,7 +69,7 @@ function results() {
   }
   else if (vs1 === "Scissors" && vs2 === "Paper") {
     document.getElementById("results").innerHTML = (vs1 + " vs " + vs2 + "<br>" + p1 + " Wins!");
-    document.getElementById("p2Score").innerHTML = (p1Wins +1);
+    document.getElementById("p1Score").innerHTML = (p1Wins +1);
     restartGame();
   }
   else if (vs1 === "Scissors" && vs2 === "Rock") {
